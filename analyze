@@ -1,0 +1,7 @@
+psql -d gis -c 'SET default_statistics_target=10000;ANALYZE planet_osm_roads;' &
+psql -d gis -c 'SET default_statistics_target=10000;ANALYZE planet_osm_point;' &
+psql -d gis -c 'SET default_statistics_target=10000;ANALYZE planet_osm_line;' &
+psql -d gis -c 'SET default_statistics_target=10000;ANALYZE planet_osm_polygon;' &
+psql -d gis -c 'SET default_statistics_target=10000;ANALYZE planet_osm_ways;' &
+psql -d gis -c 'SET default_statistics_target=10000;ANALYZE planet_osm_rels;' &
+wait

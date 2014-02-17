@@ -1,0 +1,5 @@
+psql -d gis -c 'CLUSTER planet_osm_roads USING "planet_osm_roads_way_idx"' &
+psql -d gis -c 'CLUSTER planet_osm_point USING "planet_osm_point_way_idx"' &
+psql -d gis -c 'CLUSTER planet_osm_line USING "planet_osm_line_way_idx"' &
+psql -d gis -c 'CLUSTER planet_osm_polygon USING "planet_osm_polygon_way_idx"' &
+wait

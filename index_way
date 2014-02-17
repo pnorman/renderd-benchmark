@@ -1,0 +1,5 @@
+psql -d gis -c 'CREATE INDEX ON planet_osm_roads USING gist (way);' &
+psql -d gis -c 'CREATE INDEX ON planet_osm_point USING gist (way);' &
+psql -d gis -c 'CREATE INDEX ON planet_osm_line USING gist (way);' &
+psql -d gis -c 'CREATE INDEX ON planet_osm_polygon USING gist (way);' &
+wait

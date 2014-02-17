@@ -3,15 +3,11 @@
 # ./render_benchmark style warmup.txt benchmark.txt
 # e.g. ./render_benchmark default warmup_test.txt benchmark_test.txt 2> err.log | tee benchmark.log
 
-RENDERD_SETTINGS="-f -n 4 -s /home/pnorman/run/renderd/renderd.sock"
-echo "warmup-seed" > ongoing.log
-echo "$1	warmup-seed	"`cat "$2" | render_list $RENDERD_SETTINGS -m "$1" | tee -a ongoing.log | tail -n 1`
+RENDERD_SETTINGS="-f -n 8 -s /var/run/renderd/renderd.sock"
 echo "benchmark-seed" >> ongoing.log
-echo "$1	benchmark-seed	"`cat "$3" | render_list $RENDERD_SETTINGS -m "$1" | tee -a ongoing.log | tail -n 1`
-for i in {1..5}
+cat "$1" | render_list $RENDERD_SETTINGS -m default | tee -a ongoing.log | tail -n 20
+for i in {1..2}
 do
-	echo "warmup $i" >> ongoing.log
-	echo "$1	warmup	"`cat "$2" | render_list $RENDERD_SETTINGS -m "$1" | tee -a ongoing.log | tail -n 1`
 	echo "benchmark $i" >> ongoing.log
-	echo "$1	benchmark	"`cat "$3" | render_list $RENDERD_SETTINGS -m "$1" | tee -a ongoing.log | tail -n 1`
+	cat "$1" | render_list $RENDERD_SETTINGS -m default | tee -a ongoing.log | tail -n 20
 done

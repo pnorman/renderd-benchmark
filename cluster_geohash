@@ -1,0 +1,9 @@
+psql -d gis -c 'CREATE INDEX ON planet_osm_roads ( ST_GeoHash(ST_Transform(way,4326))) WITH (fillfactor=100); 
+CLUSTER planet_osm_roads USING "planet_osm_roads_st_geohash_idx"; drop index planet_osm_roads_st_geohash_idx;' &
+psql -d gis -c 'CREATE INDEX ON planet_osm_point ( ST_GeoHash(ST_Transform(way,4326))) WITH (fillfactor=100);
+CLUSTER planet_osm_point USING "planet_osm_point_st_geohash_idx"; drop index planet_osm_point_st_geohash_idx;' &
+psql -d gis -c 'CREATE INDEX ON planet_osm_line ( ST_GeoHash(ST_Transform(way,4326))) WITH (fillfactor=100);
+CLUSTER planet_osm_line USING "planet_osm_line_st_geohash_idx"; drop index planet_osm_line_st_geohash_idx;' &
+psql -d gis -c 'CREATE INDEX ON planet_osm_polygon ( ST_GeoHash(ST_Transform(way,4326))) WITH (fillfactor=100);
+CLUSTER planet_osm_polygon USING "planet_osm_polygon_st_geohash_idx"; drop index planet_osm_polygon_st_geohash_idx;' &
+wait
